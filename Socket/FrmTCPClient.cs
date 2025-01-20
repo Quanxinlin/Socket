@@ -57,11 +57,15 @@ namespace SocketTCP
             catch (Exception ex)
             {
                 MessageBox.Show("连接失败" + ex.Message, "建立连接");
+                this.txt_Rcv.AppendText("与服务器连接失败." + Environment.NewLine);
                 return;
             }
 
             this.txt_Rcv.AppendText("与服务器连接成功" + Environment.NewLine);
             this.btn_Connect.Enabled = false;
+            this.btn_Disconnect.Enabled = true;
+            this.btn_Send.Enabled = true;
+            this.btn_SendFile.Enabled = true;
 
             thrClient = new Thread(ReceiceMsg);
             thrClient.IsBackground = true;
@@ -289,6 +293,9 @@ namespace SocketTCP
                 }
                 this.txt_Rcv.AppendText("已断开与服务器的连接" + Environment.NewLine);
                 this.btn_Connect.Enabled = true;
+                this.btn_Disconnect.Enabled = false;
+                this.btn_Send.Enabled = false;
+                this.btn_SendFile.Enabled = false;
             }
             catch (Exception ex)
             {

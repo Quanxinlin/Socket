@@ -141,6 +141,7 @@
             // 
             // btn_SendFile
             // 
+            this.btn_SendFile.Enabled = false;
             this.btn_SendFile.Location = new System.Drawing.Point(760, 481);
             this.btn_SendFile.Name = "btn_SendFile";
             this.btn_SendFile.Size = new System.Drawing.Size(105, 33);
@@ -161,6 +162,7 @@
             // 
             // btn_SendToSingle
             // 
+            this.btn_SendToSingle.Enabled = false;
             this.btn_SendToSingle.Location = new System.Drawing.Point(611, 318);
             this.btn_SendToSingle.Name = "btn_SendToSingle";
             this.btn_SendToSingle.Size = new System.Drawing.Size(105, 33);
@@ -171,6 +173,7 @@
             // 
             // btn_SendToAll
             // 
+            this.btn_SendToAll.Enabled = false;
             this.btn_SendToAll.Location = new System.Drawing.Point(611, 365);
             this.btn_SendToAll.Name = "btn_SendToAll";
             this.btn_SendToAll.Size = new System.Drawing.Size(105, 33);
@@ -191,6 +194,7 @@
             // 
             // btn_closeServer
             // 
+            this.btn_closeServer.Enabled = false;
             this.btn_closeServer.Location = new System.Drawing.Point(760, 261);
             this.btn_closeServer.Name = "btn_closeServer";
             this.btn_closeServer.Size = new System.Drawing.Size(105, 33);

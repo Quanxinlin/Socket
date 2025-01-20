@@ -145,6 +145,7 @@
             // 
             // btn_Send
             // 
+            this.btn_Send.Enabled = false;
             this.btn_Send.Location = new System.Drawing.Point(435, 300);
             this.btn_Send.Name = "btn_Send";
             this.btn_Send.Size = new System.Drawing.Size(109, 34);
@@ -155,6 +156,7 @@
             // 
             // btn_SendFile
             // 
+            this.btn_SendFile.Enabled = false;
             this.btn_SendFile.Location = new System.Drawing.Point(435, 397);
             this.btn_SendFile.Name = "btn_SendFile";
             this.btn_SendFile.Size = new System.Drawing.Size(109, 34);
@@ -165,6 +167,7 @@
             // 
             // btn_Disconnect
             // 
+            this.btn_Disconnect.Enabled = false;
             this.btn_Disconnect.Location = new System.Drawing.Point(576, 216);
             this.btn_Disconnect.Name = "btn_Disconnect";
             this.btn_Disconnect.Size = new System.Drawing.Size(109, 34);

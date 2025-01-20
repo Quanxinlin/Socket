@@ -97,6 +97,8 @@ namespace SocketTCP
                     Invoke(myRcvMsg, client + "上线了!");
                     // 开启接受线程
                     Task.Run(() => ReceiveMsg(sockClient, cancellationToken), cancellationToken);
+                    // 直接在 UI 线程中调用 EnableSendButtons 方法
+                    this.Invoke((MethodInvoker)EnableSendButtons);
                 }
                 catch (Exception ex)
                 {
@@ -133,7 +135,7 @@ namespace SocketTCP
                     }
                     length = sckclient.Receive(arrMsgRec);
                 }
-                catch (Exception )
+                catch (Exception)
                 {
                     if (sckclient != null && sckclient.Connected)
                     {
@@ -154,6 +156,8 @@ namespace SocketTCP
                             DicSocket.Remove(str);
                         }
                     }
+                    // 直接在 UI 线程中调用 EnableSendButtons 方法
+                    this.Invoke((MethodInvoker)EnableSendButtons);
                     break;
                 }
                 if (length == 0)
@@ -166,6 +170,8 @@ namespace SocketTCP
                     {
                         DicSocket.Remove(str);
                     }
+                    // 直接在 UI 线程中调用 EnableSendButtons 方法
+                    this.Invoke((MethodInvoker)EnableSendButtons);
                     break;
                 }
                 else
@@ -287,7 +293,7 @@ namespace SocketTCP
         /// <summary>
         /// 群发消息
         /// </summary>
-        /// <param name="sender"></summary>
+        /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_SendToAll_Click(object sender, EventArgs e)
         {
@@ -302,7 +308,7 @@ namespace SocketTCP
                 string Msg = "[发送]" + item + "     " + StrMsg;
                 Invoke(myRcvMsg, Msg);
             }
-            Invoke(myRcvMsg, "[群发]     黄小龙: 群发完毕!");
+            Invoke(myRcvMsg, "[群发]     : 群发完毕!");
         }
         #endregion
 
@@ -341,7 +347,7 @@ namespace SocketTCP
         /// <summary>
         /// 发送文件
         /// </summary>
-        /// <param name="sender"></summary>
+        /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_SendFile_Click(object sender, EventArgs e)
         {
@@ -426,6 +432,8 @@ namespace SocketTCP
                 threadListen.Join();
                 this.btn_closeServer.Enabled = false;
                 this.btn_StartServer.Enabled = true;
+                // 直接在 UI 线程中调用 EnableSendButtons 方法
+                this.Invoke((MethodInvoker)EnableSendButtons);
             }
             catch (Exception ex)
             {
@@ -436,6 +444,23 @@ namespace SocketTCP
 
         private void label1_Click(object sender, EventArgs e)
         {
+        }
+
+        // 新方法，用于根据 DicSocket 的连接情况启用或禁用按钮
+        private void EnableSendButtons()
+        {
+            if (DicSocket.Count > 0)
+            {
+                this.btn_SendFile.Enabled = true;
+                this.btn_SendToSingle.Enabled = true;
+                this.btn_SendToAll.Enabled = true;
+            }
+            else
+            {
+                this.btn_SendFile.Enabled = false;
+                this.btn_SendToSingle.Enabled = false;
+                this.btn_SendToAll.Enabled = false;
+            }
         }
     }
 }
